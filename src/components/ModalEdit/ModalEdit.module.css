@@ -1,0 +1,27 @@
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    box-sizing: border-box;
+    width: 595px;
+    height: 100%;
+    background: #cac8c8;
+    z-index: 2;
+    animation: slideInTop 0.2s ease-in-out;
+  }
+  
+  .modal_header {
+    box-sizing: border-box;
+    padding: 0 32px;
+    height: 64px;
+    border-bottom: 1px solid #cfcaca;
+  }
+  
+  @keyframes slideInTop {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }

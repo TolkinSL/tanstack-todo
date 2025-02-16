@@ -49,7 +49,7 @@ export async function apiPatchTodo(updateTodo: Todo): Promise<void> {
 
       sessionStorage.setItem('todosTolkin', JSON.stringify(newTodo));
       resolve();
-    }, 250);
+    }, 100);
   });
 }
 

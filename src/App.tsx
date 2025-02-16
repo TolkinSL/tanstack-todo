@@ -1,5 +1,5 @@
 // import { useState } from 'react';
-import './App.css';
+import styles from './App.module.css';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import NewTodo from './components/NewTodo/NewTodo.tsx';
 import TodoList from './components/TodoList/TodoList.tsx';
@@ -9,11 +9,11 @@ function App() {
 
   return (
     <>
-      <div className="App" style={{ width: '640px', margin: '0 auto' }}>
-        <h2>Hello ToDo</h2>
+      <div className={styles.main}>
+        <h2 className={styles.mainCaption}>Hello ToDo</h2>
         <NewTodo />
         <TodoList />
-        <ReactQueryDevtools initialIsOpen />
+        {/* <ReactQueryDevtools initialIsOpen /> */}
       </div>
     </>
   );

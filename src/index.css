@@ -14,11 +14,13 @@
 }
 
 body {
+  box-sizing: border-box;
   margin: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: column;
+  /* place-items: center; */
+  min-width: 640px;
+  /* min-height: 100vh; */
 }
 
 @media (prefers-color-scheme: light) {

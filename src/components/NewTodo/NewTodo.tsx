@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { apiSaveTodo } from '../../services/todoApi';
 import { Todo } from '../../types/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import styles from './NewTodo.module.css';
 
 function NewTodo() {
   const queryClient = useQueryClient();
@@ -26,7 +27,7 @@ function NewTodo() {
       const newTodo: Todo = {
         id: Date.now(),
         caption: title ?? '',
-        text: description ?? '',
+        description: description ?? '',
         complete: false,
       };
 
@@ -40,7 +41,7 @@ function NewTodo() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.mainForm} onSubmit={handleSubmit}>
       <input
         type="text"
         value={title}
@@ -53,7 +54,19 @@ function NewTodo() {
         onChange={(evt) => setDescription(evt.target.value)}
         placeholder="Введите описание"
       />
-      <button type="submit">Добавить</button>
+      <button className={styles.formButton} type="submit">
+        Добавить
+      </button>
+      <button
+        className={styles.formButton}
+        type="button"
+        onClick={() => {
+          setTitle('');
+          setDescription('');
+        }}
+      >
+        Очистить
+      </button>
     </form>
   );
 }

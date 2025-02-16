@@ -1,0 +1,27 @@
+.main {
+  display: flex;
+  flex-direction: row;
+}
+
+.activeTodo {
+  color: #213547;
+}
+
+.completeTodo {
+  color: #adb9c4;
+}
+
+.mainCaption {
+  width: 200px;
+  border-left: 1px solid #adb9c4;
+  padding-left: 6px;
+  border-right: 1px solid #adb9c4;
+}
+
+.mainDescription {
+  padding-left: 6px;
+  width: 260px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

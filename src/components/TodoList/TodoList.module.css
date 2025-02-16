@@ -1,0 +1,43 @@
+.todoList {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  overflow: scroll;
+  overflow-x: auto;
+  max-height: 300px;
+}
+
+.todoItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.todoIdButton {
+  margin-top: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.idButtonIcon {
+  width: 20px;
+}
+
+.actionButton {
+  border: 1px solid rgb(168, 164, 164);
+  /* border: none; */
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.actionButton:hover {
+  background-color: rgb(210, 210, 210);
+  border: 1px solid rgb(168, 164, 164);
+}
+
+.iconButton {
+  width: 16px;
+}

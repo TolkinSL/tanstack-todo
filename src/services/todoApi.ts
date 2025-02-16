@@ -9,7 +9,7 @@ export async function apiSaveTodo(newTodo: Todo): Promise<void> {
       sessionStorage.setItem('todosTolkin', JSON.stringify(listTodos));
 
       resolve();
-    }, 500);
+    }, 250);
   });
 }
 
@@ -29,7 +29,7 @@ export async function apiLoadTodo(): Promise<Todo[]> {
       const parseTodos: Todo[] = localTodos ? JSON.parse(localTodos) : [];
 
       resolve(parseTodos);
-    }, 500);
+    }, 250);
   });
 }
 
@@ -49,7 +49,7 @@ export async function apiPatchTodo(updateTodo: Todo): Promise<void> {
 
       sessionStorage.setItem('todosTolkin', JSON.stringify(newTodo));
       resolve();
-    }, 500);
+    }, 250);
   });
 }
 
@@ -69,6 +69,6 @@ export async function apiDeleteTodo(deleteTodo: Todo): Promise<void> {
 
       sessionStorage.setItem('todosTolkin', JSON.stringify(newTodo));
       resolve();
-    }, 500);
+    }, 250);
   });
 }

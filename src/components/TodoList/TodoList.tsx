@@ -2,15 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useLoadTodo } from '../../hooks/useLoadTodo';
 import { useDeleteTodo } from '../../hooks/useDeleteTodo';
+import { useNavigate } from 'react-router-dom';
 import ModalEdit from '../ModalEdit/ModalEdit';
 import { Todo } from '../../types/types';
 import editIcon from '../../assets/edit.svg';
 import deleteIcon from '../../assets/trash.svg';
 import checkOffIcon from '../../assets/check_off.svg';
 import checkOnIcon from '../../assets/check_on.svg';
+import viewIcon from '../../assets/view.svg';
 import styles from './TodoList.module.css';
 import TodoText from '../TodoText/TodoText';
 import { apiPatchTodo } from '../../services/todoApi';
+import NewTodo from '../NewTodo/NewTodo';
 
 interface ModalEditState {
   open: boolean;
@@ -21,6 +24,8 @@ function TodoList() {
   const queryClient = useQueryClient();
   const { data, error, isLoading } = useLoadTodo();
   const deleteMutation = useDeleteTodo();
+
+  const navigate = useNavigate();
 
   const [modalEdit, setModalEdit] = useState<ModalEditState>({
     open: false,
@@ -57,48 +62,67 @@ function TodoList() {
     return <p style={{ color: 'red' }}>Ошибка загрузки: {error.message}</p>;
 
   return (
-    <div className={styles.todoList}>
-      {data?.map((todo) => (
-        <div key={todo.id} className={styles.todoItem}>
-          <button
-            className={styles.todoIdButton}
-            onClick={() => handleComplete(todo)}
-          >
-            <img
-              src={!todo.complete ? checkOffIcon : checkOnIcon}
-              className={styles.idButtonIcon}
-              alt="check Icon"
+    <>
+      <NewTodo />
+      <div className={styles.todoList}>
+        {data?.map((todo) => (
+          <div key={todo.id} className={styles.todoItem}>
+            <button
+              className={styles.todoIdButton}
+              onClick={() => handleComplete(todo)}
+            >
+              <img
+                src={!todo.complete ? checkOffIcon : checkOnIcon}
+                className={styles.idButtonIcon}
+                alt="check Icon"
+              />
+            </button>
+            <TodoText
+              isActive={todo.complete}
+              caption={todo.caption}
+              description={todo.description}
             />
-          </button>
-          <TodoText
-            isActive={todo.complete}
-            caption={todo.caption}
-            description={todo.description}
-          />
-          <button
-            className={styles.actionButton}
-            onClick={() => openModalEdit(todo)}
-          >
-            <img src={editIcon} className={styles.iconButton} alt="edit Icon" />
-          </button>
-          <button
-            className={styles.actionButton}
-            onClick={() => deleteMutation.mutate(todo)}
-          >
-            <img
-              src={deleteIcon}
-              className={styles.iconButton}
-              alt="delete Icon"
-            />
-          </button>
-        </div>
-      ))}
+            <button
+              className={styles.actionButton}
+              onClick={() => {
+                navigate(`/todo/${todo.id}`);
+              }}
+            >
+              <img
+                src={viewIcon}
+                className={styles.iconButton}
+                alt="edit Icon"
+              />
+            </button>
+            <button
+              className={styles.actionButton}
+              onClick={() => openModalEdit(todo)}
+            >
+              <img
+                src={editIcon}
+                className={styles.iconButton}
+                alt="edit Icon"
+              />
+            </button>
+            <button
+              className={styles.actionButton}
+              onClick={() => deleteMutation.mutate(todo)}
+            >
+              <img
+                src={deleteIcon}
+                className={styles.iconButton}
+                alt="delete Icon"
+              />
+            </button>
+          </div>
+        ))}
 
-      {/*Открытие Модального окна для редактирования*/}
-      {modalEdit.open && (
-        <ModalEdit closeModal={closeModalEdit} item={modalEdit} />
-      )}
-    </div>
+        {/*Открытие Модального окна для редактирования*/}
+        {modalEdit.open && (
+          <ModalEdit closeModal={closeModalEdit} item={modalEdit} />
+        )}
+      </div>
+    </>
   );
 }
 

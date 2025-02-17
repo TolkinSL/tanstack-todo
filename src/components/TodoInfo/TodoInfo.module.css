@@ -1,0 +1,10 @@
+.caption {
+  margin: 0;
+  margin-bottom: 32px;
+  text-align: center;
+  border-bottom: 1px solid #cfcaca;
+}
+
+.button {
+  margin: 0;
+}
